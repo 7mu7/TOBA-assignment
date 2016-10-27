@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+<title>Login</title>
+</head>
+<body>
+<a href="index.html">Home</a>
+<a href="Login.html">Login</a>
+<a href="New_customer.html">New Customer</a>
+<a href="Transaction.html">Transaction</a>         
+<form method="post" action="LoginServlet">
+*Username:<input type="text" name="Username" required>
+<br>
+*Password:<input type="text" name="Password" required>
+<input type="hidden" name="action" value="register">
+<br>
+<input type="submit" value="login">
+<input type="button" value="New Customer" onclick="window.location.href='NewCustomer.html'" >
+</form>
+</body>
+</html>
