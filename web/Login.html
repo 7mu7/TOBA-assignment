@@ -11,16 +11,17 @@ and open the template in the editor.
 <body>
 <a href="index.html">Home</a>
 <a href="Login.html">Login</a>
-<a href="New_customer.html">New Customer</a>
-<a href="Transaction.html">Transaction</a>         
+<a href="New_customer.jsp">New Customer</a>
+<a href="Account_activity.jsp">Account Activity</a>            
 <form method="post" action="LoginServlet">
 *Username:<input type="text" name="Username" required>
 <br>
 *Password:<input type="text" name="Password" required>
 <input type="hidden" name="action" value="register">
 <br>
-<input type="submit" value="login">
-<input type="button" value="New Customer" onclick="window.location.href='NewCustomer.html'" >
+<input type="submit" value="Login">
+<input type="button" value="New Customer" onclick="window.location.href='NewCustomer.jsp'" >
+<input type="button" value="Forgot Password" onclick="window.location.href='Password_reset.jsp'" >
 </form>
 </body>
 </html>
