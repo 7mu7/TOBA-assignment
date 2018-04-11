@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/header.html" />
 <session>
-<h4>Reset Password</h4>
+Reset Password
 <form action="ResetPasswordServlet" method="post">
 <input type="hidden" name="action" value="resetPassword">
 Username:

@@ -4,7 +4,7 @@
     int currentYear = currentDate.get(Calendar.YEAR);
 %>
 <footer>
-<p>&copy; Copyright <%= currentYear%> TOBA Online Banking<br></p>
+<p>&copy; Copyright <%= currentYear%> TOBA Online Banking
 </footer>
 </body>
 </html>

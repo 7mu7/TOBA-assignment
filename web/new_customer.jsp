@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/header.html" />
 <section>
-<h4>New customer</h4>
+New customer
 <form action="NewCustomerServlet" method="post">
 <input type="hidden" name="action" value="register">
 First Name
@@ -16,7 +16,7 @@ City
 <input type="text" name="city">
 State
 <input type="text" name="state">
->Zip Code
+Zip Code
 <input type="text" name="zipCode">
 E-mail
 <input type="email" name="email">
