@@ -4,46 +4,57 @@
  * and open the template in the editor.
  */
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package Servlets;
+
+import JavaBean.User;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
 public class NewCustomerServlet extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewCustomerServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewCustomerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = "/new_customer.jsp";
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "join";
+            url = "/new_customer.jsp";
+        } else if (action.equals("register")) {
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+            String zipCode = request.getParameter("zipCode");
+            String email = request.getParameter("email");
+            String message;
+            if (firstName == null || lastName == null || phone == null || address == null || city == null
+                    || state == null || zipCode == null || email == null || firstName.isEmpty() || lastName.isEmpty()
+                    || phone.isEmpty() || address.isEmpty() || city.isEmpty() || state.isEmpty() || zipCode.isEmpty()
+                    || email.isEmpty()) {
+                message = "*Please fill out all fields.";
+                url = "/new_customer.jsp";
+            } else {
+                String username = lastName + zipCode;
+                String password = "welcome1";
+                User user = new User(firstName, lastName, phone, address, city, state, zipCode, email, username, password);
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                message = "";
+                url = "/Success.jsp";
+            }
+            request.setAttribute("message", message);
+        }
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+	@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
     }
-
 }

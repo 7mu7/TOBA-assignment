@@ -10,23 +10,32 @@ import javax.servlet.http.*;
 import java.sql.*;
 
 public class LoginServlet extends HttpServlet {
- 
+	@Override
     protected void doPost (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType ("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter(); 
+        String url = "/Index.jsp";
+        String action = request.getParameter("action");
+        if (action == null) {
+            url = "/Index.jsp";
+        } else if (action.equals("signin")) { 
         String Username = request.getParameter("Username");
         String Password = request.getParameter("Password");
-         
         if(Username.contains("jsmith@toba.com") && Password.contains("letmein")){    
-            RequestDispatcher rs = request.getRequestDispatcher("Account_activity.html");
-            rs.forward(request, response);
+		url = "/Account_activity.jsp";
         }
         else
         {
-           RequestDispatcher rs = request.getRequestDispatcher("Login_failure.html");
-           rs.include(request, response);
+        url = "/Login_failure.jsp";
         }
+    }
+	getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
+			}
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        doPost(request, response);
     }
 }
 
