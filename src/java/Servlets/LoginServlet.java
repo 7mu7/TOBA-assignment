@@ -10,7 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import javax.servlet.annotation.WebServlet;
-import customer.User;
+import Database.User;
 
 @WebServlet(name="LoginServlet", urlPatterns={"/Login"})
 public class LoginServlet extends HttpServlet {
