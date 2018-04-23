@@ -9,26 +9,31 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
+import javax.servlet.annotation.WebServlet;
+import Database.User;
 
+@WebServlet(name="LoginServlet", urlPatterns={"/Login"})
 public class LoginServlet extends HttpServlet {
-	@Override
-    protected void doPost (HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "/Index.jsp";
-        String action = request.getParameter("action");
-        if (action == null) {
-            url = "/Index.jsp";
-        } else if (action.equals("signin")) { 
-        String Username = request.getParameter("Username");
-        String Password = request.getParameter("Password");
-        if(Username.contains("jsmith@toba.com") && Password.contains("letmein")){    
-		url = "/Account_activity.jsp";
-        }
-        else
-        {
-        url = "/Login_failure.jsp";
-        }
-    }
+				
+				 HttpSession session = request.getSession();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if(session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                response.sendRedirect("account_activity.jsp");
+            }
+        } else if(username.equals("jsmith@toba.com") && password.equals("letmein")) {
+            response.sendRedirect("account_activity.jsp");
+            User user = new User(username, password);
+            session.setAttribute("user", user);
+        } else {
+            response.sendRedirect("login_failure.jsp");
+        }     
+}
+
 	getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -39,7 +44,16 @@ public class LoginServlet extends HttpServlet {
         doPost(request, response);
     }
 }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+}
+    public String getServletInfo() {
+        return "Short description";
+    }
 
+}
            
         
     
