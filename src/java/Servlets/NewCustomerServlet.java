@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Database.UserDB;
 import Database.User;
 import java.io.*;
 import javax.servlet.*;
@@ -40,6 +41,7 @@ public class NewCustomerServlet extends HttpServlet {
                 String username = lastName + zipCode;
                 String password = "welcome1";
                 User user = new User(firstName, lastName, phone, address, city, state, zipCode, email, username, password);
+				UserDB.insert(user);
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 message = "";
