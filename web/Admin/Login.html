@@ -7,21 +7,16 @@ and open the template in the editor.
 <html>
 <head>
 <title>Login</title>
+<link rel="stylesheet" href="Css/Style.css">
 </head>
 <body>
-<a href="index.html">Home</a>
-<a href="Login.html">Login</a>
-<a href="New_customer.jsp">New Customer</a>
-<a href="Account_activity.jsp">Account Activity</a>            
-<form method="post" action="LoginServlet">
-*Username:<input type="text" name="Username" required>
-<br>
-*Password:<input type="text" name="Password" required>
-<input type="hidden" name="action" value="register">
-<br>
+admin            
+<form action="j_security_check" method="get">
+Username:<input type="text" name="j_username">
+Password:
+<input type="password" name="j_password">
+&nbsp;
 <input type="submit" value="Login">
-<input type="button" value="New Customer" onclick="window.location.href='NewCustomer.jsp'" >
-<input type="button" value="Forgot Password" onclick="window.location.href='Password_reset.jsp'" >
 </form>
 </body>
 </html>

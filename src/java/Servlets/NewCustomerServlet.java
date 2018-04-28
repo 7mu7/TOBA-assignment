@@ -6,7 +6,7 @@
 package Servlets;
 
 import Database.UserDB;
-import Database.User;
+import Javabeans.User;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;

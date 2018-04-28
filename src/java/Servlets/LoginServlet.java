@@ -10,56 +10,46 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import javax.servlet.annotation.WebServlet;
-import Database.User;
+import Javabeans.User;
+import Javabeans.Account;
+import Database.AccountDB;
+import Database.UserDB;
 
-@WebServlet(name="LoginServlet", urlPatterns={"/Login"})
 public class LoginServlet extends HttpServlet {
-    protected void processRequest (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-				
-				 HttpSession session = request.getSession();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        if(session.getAttribute("user") != null) {
-            User user = (User) session.getAttribute("user");
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                response.sendRedirect("account_activity.jsp");
-            }
-        } else if(username.equals("jsmith@toba.com") && password.equals("letmein")) {
-            response.sendRedirect("account_activity.jsp");
-            User user = new User(username, password);
-            session.setAttribute("user", user);
-        } else {
-            response.sendRedirect("login_failure.jsp");
-        }     
-}
-
-	getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
-			}
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        doPost(request, response);
-    }
-}
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-}
-    public String getServletInfo() {
-        return "Short description";
+        String url = "/index.jsp";
+        String action = request.getParameter("action");
+        if (action == null) {
+            url = "/index.jsp";
+        } else if (action.equals("signin")) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            if (!UserDB.emailExists("jsmith@toba.com")) {
+                User jSmith = new User("J", "Smith", "7277777777", "11 Drew St", "Clearwater", "FL", "33761", "jsmith@toba.com", "jsmith@toba.com", "letmein");
+                Account savingAccount = new Account(jSmith, 25.00, Account.Type.SAVING);
+                Account checkingAccount = new Account(jSmith, 0, Account.Type.CHECKING);
+                UserDB.insert(jSmith);
+                AccountDB.insert(savingAccount);
+                AccountDB.insert(checkingAccount);
+            }
+            User user = UserDB.login(username, password);
+            if (user != null) {
+                url = "/account_activity.jsp";
+            } else {
+                url = "/login_failure.jsp";
+            }
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+        }
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
     }
-
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 }
-           
-        
-    
-
-    
-
-
-
-        

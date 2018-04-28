@@ -5,7 +5,7 @@
  */
 package Database;
 
-import Database.User;
+import Javabeans.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

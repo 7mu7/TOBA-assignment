@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/header.html" />
+<link rel="stylesheet" href="Css/Style.css">
 <session>
 Reset Password
 <form action="ResetPasswordServlet" method="post">
