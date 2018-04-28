@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/Header.html" />
-<link rel="stylesheet" href="Css/Style.css">
 <section>
     enter your username and password:
     <form action="LoginServlet" method="post">

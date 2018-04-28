@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/Header.html" />
-<link rel="stylesheet" href="Css/Style.css">
 <section>
     You have successfully registered!
     <table>

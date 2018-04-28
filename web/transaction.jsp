@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/Header.html" />
 <c:if test="${sessionScope.user != null}">
-<link rel="stylesheet" href="Css/Style.css">
     <section>
         <h1>Transaction</h1>
         <table>

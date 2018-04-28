@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="includes/header.html" />
-<link rel="stylesheet" href="Css/Style.css">
 <section>
     Login Failed
     <form class="formButton" action="login.jsp" method="get">
