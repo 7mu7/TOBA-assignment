@@ -5,16 +5,14 @@
  */
  package Servlets;
 
+import javabeans.User;
+import javabeans.Account;
+import Database.AccountDB;
+import Database.UserDB;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.sql.*;
-import javax.servlet.annotation.WebServlet;
-import Javabeans.User;
-import Javabeans.Account;
-import Database.AccountDB;
-import Database.UserDB;
-
+        
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

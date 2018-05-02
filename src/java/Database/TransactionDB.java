@@ -1,7 +1,7 @@
 package Database;
 
-import Javabeans.Transactions;
-import Javabeans.User;
+import javabeans.Transactions;
+import javabeans.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

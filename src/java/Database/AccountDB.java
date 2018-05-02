@@ -2,8 +2,8 @@ package Database;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import Javabeans.Account;
-import Javabeans.User;
+import javabeans.Account;
+import javabeans.User;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 

@@ -1,8 +1,8 @@
 package Servlets;
 
 import Database.TransactionDB;
-import Javabeans.Transactions;
-import Javabeans.User;
+import javabeans.Transactions;
+import javabeans.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;

@@ -6,20 +6,20 @@
 package Servlets;
 
 import Database.UserDB;
-import Javabeans.User;
+import javabeans.User;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class ResetPasswordServlet extends HttpServlet {
-    @Override
+        @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "/Index.jsp";
+        String url = "/index.jsp";
         String action = request.getParameter("action");
         if (action == null) {
             action = "home";
-            url = "/Index.jsp";
+            url = "/index.jsp";
         }
         if (action.equals("resetPassword")) {
             String username = request.getParameter("username");
@@ -31,11 +31,11 @@ public class ResetPasswordServlet extends HttpServlet {
                 User user = (User) session.getAttribute("user");
                 message = "";
                 user.setPassword(newPassword);
-                url = "/Account_activity.jsp";
-                session.setAttribute("user", user);
+                UserDB.update(user);
+                url = "/account_activity.jsp";
             } else {
                 message = "*The passwords did not match, please try again.";
-                url = "/Password_reset.jsp";
+                url = "/password_reset.jsp";
             }
             request.setAttribute("message", message);
         }
